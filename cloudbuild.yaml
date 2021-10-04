@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/shopdon-1614963409256/facebookapi:$SHORT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/donexp/facebookapimvp:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push','gcr.io/shopdon-1614963409256/facebookapi:$SHORT_SHA']
+  args: ['push','gcr.io/donexp/facebookapimvp:$SHORT_SHA']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'facebookapi', '--region=us-central1', '--platform=managed', '--image=gcr.io/shopdon-1614963409256/facebookapi:$SHORT_SHA']
+  args: ['run', 'deploy', 'facebookapimvp', '--region=us-central1', '--platform=managed', '--image=gcr.io/donexp/facebookapimvp:$SHORT_SHA']
