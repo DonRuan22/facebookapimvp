@@ -26,6 +26,12 @@ def callSendAPI(senderPsid, response, type_response='message'):
     if(type_response == 'message'):
         payload = {
         'recipient': {'id': senderPsid},
+        'message': {"text": "test payload"},
+        'messaging_type': 'RESPONSE'
+        }
+    if(type_response == 'model'):
+        payload = {
+        'recipient': {'id': senderPsid},
         'message': {
                 "attachment":{
                     "type":"template",
@@ -96,7 +102,8 @@ def handleMessage(senderPsid, receivedMessage):
             response = {"text": response_port }
             if(INIT_VARI != response_rasa):
                 INIT_VARI = response_rasa
-                callSendAPI(senderPsid, response)
+                if('model' in response):
+                    callSendAPI(senderPsid, response, 'model')
             #logging.warning(response)
         else:
             response = {"text": 'This chatbot only accepts text messages'}
