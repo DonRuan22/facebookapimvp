@@ -26,7 +26,7 @@ def callSendAPI(senderPsid, response, type_response='message'):
     if(type_response == 'message'):
         payload = {
         'recipient': {'id': senderPsid},
-        'message': {"text": "test payload"},
+        'message': response,
         'messaging_type': 'RESPONSE'
         }
     if(type_response == 'model'):
