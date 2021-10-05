@@ -30,6 +30,7 @@ def callSendAPI(senderPsid, response, type_response='message'):
         'messaging_type': 'RESPONSE'
         }
     if(type_response == 'model'):
+        logging.warning(response) 
         payload = {
         'recipient': {'id': senderPsid},
         'message': {
