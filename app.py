@@ -105,6 +105,8 @@ def handleMessage(senderPsid, receivedMessage):
                 INIT_VARI = response_rasa
                 if('model' in response):
                     callSendAPI(senderPsid, response, 'model')
+                elif('text' in response):
+                    callSendAPI(senderPsid, response)
             #logging.warning(response)
         else:
             response = {"text": 'This chatbot only accepts text messages'}
