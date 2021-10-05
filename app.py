@@ -26,7 +26,26 @@ def callSendAPI(senderPsid, response, type_response='message'):
     if(type_response == 'message'):
         payload = {
         'recipient': {'id': senderPsid},
-        'message': response,
+        'message': {
+                "attachment":{
+                    "type":"template",
+                    "payload":{
+                        "template_type":"generic",
+                        "elements":[
+                           {
+                            "title":"Welcome!",
+                            "image_url":"https://petersfancybrownhats.com/company_image.png",
+                            "subtitle":"We have the right hat for everyone.",
+                            "default_action": {
+                              "type": "web_url",
+                              "url": "https://petersfancybrownhats.com/view?item=103",
+                              "webview_height_ratio": "tall",
+                            }        
+                           }
+                        ]
+                    }
+                }
+        },
         'messaging_type': 'RESPONSE'
         }
     if(type_response == "sender_action"):
@@ -67,7 +86,8 @@ def handleMessage(senderPsid, receivedMessage):
             logging.warning('response') 
             logging.warning(response_rasa.json()) 
             if(len(response_rasa.json())>0):
-                response_port = GoogleTranslator(source='auto', target='pt').translate(text=response_rasa.json()[0]["text"] )
+                print(response_rasa.json())
+                #response_port = GoogleTranslator(source='auto', target='pt').translate(text=response_rasa.json()[0]["description"] )
             else:
                 response_port = 'Sorry error server'
             #print(response_rasa.json()[0]["text"])
