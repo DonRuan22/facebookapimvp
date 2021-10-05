@@ -94,7 +94,7 @@ def handleMessage(senderPsid, receivedMessage):
             logging.warning(response_rasa.json()) 
             if(len(response_rasa.json())>0):
                 print(response_rasa.json())
-                #response_port = GoogleTranslator(source='auto', target='pt').translate(text=response_rasa.json()[0]["description"] )
+                response_port = GoogleTranslator(source='auto', target='pt').translate(text=response_rasa.json()[0]["description"] )
             else:
                 response_port = 'Sorry error server'
             #print(response_rasa.json()[0]["text"])
