@@ -105,7 +105,7 @@ def handleMessage(senderPsid, receivedMessage):
             if(INIT_VARI != response_rasa):
                 INIT_VARI = response_rasa
                 if('custom' in response_data):
-                    if('model' in response_data['custom'][0]):
+                    if('title' in response_data['custom'][0]):
                         response = response_data['custom']
                         callSendAPI(senderPsid, response, 'model')
                 elif('text' in response_data):
