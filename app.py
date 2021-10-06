@@ -101,7 +101,7 @@ def handleMessage(senderPsid, receivedMessage):
                 response_data['text'] = 'Sorry error server'
             #print(response_rasa.json()[0]["text"])
             #response = {"text": 'You just sent: {}'.format(receivedMessage['text']) }
-            logging.warning("init: "+response_data)
+            logging.warning("init: "+str(response_data))
             if(INIT_VARI != response_rasa):
                 INIT_VARI = response_rasa
                 if('custom' in response_data):
