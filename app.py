@@ -93,9 +93,9 @@ def handleMessage(senderPsid, receivedMessage):
             response_rasa = requests.post('https://don-mvp-vc5xcezzwa-uc.a.run.app/webhooks/rest/webhook', json = payload, timeout=None)
             logging.warning('response') 
             logging.warning(response_rasa.json()) 
-            response_data={}
+            response_data=[]
             if(len(response_rasa.json())>0):
-                response_data = response_rasa.json()
+                response_data = response_rasa.json()[0]
                 #response_port = GoogleTranslator(source='auto', target='pt').translate(text=response_rasa.json()[0]["text"] )
             else:
                 response_data['text'] = 'Sorry error server'
