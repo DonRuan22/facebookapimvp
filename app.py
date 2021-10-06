@@ -23,7 +23,7 @@ INIT_VARI=''
 #Function to access the Sender API
 def callSendAPI(senderPsid, response, type_response='message'):
     #PAGE_ACCESS_TOKEN = config.PAGE_ACCESS_TOKEN
-    logging.warning("Response: "+ response) 
+    logging.warning("Response: "+ str(response)) 
     if(type_response == 'message'):
         payload = {
         'recipient': {'id': senderPsid},
