@@ -93,15 +93,15 @@ def handleMessage(senderPsid, receivedMessage):
             response_rasa = requests.post('https://don-mvp-vc5xcezzwa-uc.a.run.app/webhooks/rest/webhook', json = payload, timeout=None)
             logging.warning('response') 
             logging.warning(response_rasa.json()) 
+            response_data={}
             if(len(response_rasa.json())>0):
                 response_data = response_rasa.json()
                 #response_port = GoogleTranslator(source='auto', target='pt').translate(text=response_rasa.json()[0]["text"] )
             else:
-                response_data={}
                 response_data['text'] = 'Sorry error server'
             #print(response_rasa.json()[0]["text"])
             #response = {"text": 'You just sent: {}'.format(receivedMessage['text']) }
-            
+            logging.warning("init: "+response_data)
             if(INIT_VARI != response_rasa):
                 INIT_VARI = response_rasa
                 if('custom' in response_data):
