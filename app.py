@@ -93,19 +93,21 @@ def handleMessage(senderPsid, receivedMessage):
             logging.warning('response') 
             logging.warning(response_rasa.json()) 
             if(len(response_rasa.json())>0):
-                print(response_rasa.json())
-                response_port = GoogleTranslator(source='auto', target='pt').translate(text=response_rasa.json()[0]["text"] )
+                response_data = response_rasa.json()
+                #response_port = GoogleTranslator(source='auto', target='pt').translate(text=response_rasa.json()[0]["text"] )
             else:
-                response_port = 'Sorry error server'
+                response_data['text'] = 'Sorry error server'
             #print(response_rasa.json()[0]["text"])
             #response = {"text": 'You just sent: {}'.format(receivedMessage['text']) }
             
-            response = {"text": response_port }
             if(INIT_VARI != response_rasa):
                 INIT_VARI = response_rasa
-                if('model' in response):
-                    callSendAPI(senderPsid, response, 'model')
-                elif('text' in response):
+                if('custom' in response_data):
+                    if('model' in response_data['custom'][0]):
+                        response = response_data['custom']
+                        callSendAPI(senderPsid, response, 'model')
+                elif('text' in response_data):
+                    response = {"text": response_data['text'] }
                     callSendAPI(senderPsid, response)
             #logging.warning(response)
         else:
