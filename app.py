@@ -96,6 +96,7 @@ def handleMessage(senderPsid, receivedMessage):
                 response_data = response_rasa.json()
                 #response_port = GoogleTranslator(source='auto', target='pt').translate(text=response_rasa.json()[0]["text"] )
             else:
+                response_data={}
                 response_data['text'] = 'Sorry error server'
             #print(response_rasa.json()[0]["text"])
             #response = {"text": 'You just sent: {}'.format(receivedMessage['text']) }
