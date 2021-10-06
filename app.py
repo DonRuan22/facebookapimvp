@@ -109,6 +109,7 @@ def handleMessage(senderPsid, receivedMessage):
                         response = response_data['custom']
                         callSendAPI(senderPsid, response, 'model')
                 elif('text' in response_data):
+                    logging.warning(response_data) 
                     response = {"text": response_data['text'] }
                     callSendAPI(senderPsid, response)
             #logging.warning(response)
