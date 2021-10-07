@@ -37,7 +37,7 @@ def callSendAPI(senderPsid, response, type_response='message'):
             elem={}
             elem['title'] = each['title']
             elem['image_url'] = each['image']
-            elem['subtitle'] = each['title']
+            elem['subtitle'] = each['short_desc']
             elem['default_action'] = {
                               "type": "web_url",
                               "url": each['image'],
