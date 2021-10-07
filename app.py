@@ -31,7 +31,20 @@ def callSendAPI(senderPsid, response, type_response='message'):
         'messaging_type': 'RESPONSE'
         }
     if(type_response == 'model'):
-        logging.warning(response) 
+        logging.warning(response)
+        response_info=[]
+        for each in response:
+            elem={}
+            elem['title'] = each['title']
+            elem['image_url'] = each['image']
+            elem['subtitle'] = each['title']
+            elem['default_action'] = {
+                              "type": "web_url",
+                              "url": each['image'],
+                              "webview_height_ratio": "tall",
+                            }
+            response_info.append(elem)        
+            
         payload = {
         'recipient': {'id': senderPsid},
         'message': {
@@ -39,28 +52,7 @@ def callSendAPI(senderPsid, response, type_response='message'):
                     "type":"template",
                     "payload":{
                         "template_type":"generic",
-                        "elements":[
-                           {
-                            "title":"Welcome!",
-                            "image_url":"https://petersfancybrownhats.com/company_image.png",
-                            "subtitle":"We have the right hat for everyone.",
-                            "default_action": {
-                              "type": "web_url",
-                              "url": "https://petersfancybrownhats.com/view?item=103",
-                              "webview_height_ratio": "tall",
-                            }        
-                           },
-                           {
-                            "title":"Welcome!",
-                            "image_url":"https://petersfancybrownhats.com/company_image.png",
-                            "subtitle":"We have the right hat for everyone.",
-                            "default_action": {
-                              "type": "web_url",
-                              "url": "https://petersfancybrownhats.com/view?item=103",
-                              "webview_height_ratio": "tall",
-                            }        
-                           }
-                        ]
+                        "elements":response_info
                     }
                 }
         },
