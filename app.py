@@ -188,6 +188,7 @@ def index():
         #do something else
         data = request.data
         body = json.loads(data.decode('utf-8'))
+        logging.warning(body)
         
 
         if 'object' in body and body['object'] == 'page':
